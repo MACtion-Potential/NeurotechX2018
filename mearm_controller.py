@@ -14,11 +14,14 @@ dance = [TOPR, CNTR, TOPR, CNTR,
           BOTR, CNTR, BOTL, CNTR,
           CLAP, CNTR, CLAP, CNTR]
 
+danceTopR = [TOPR, CNTR]
+danceBotL = [BOTL, CNTR]
+
 class MeArm:
   port = '';
   serial = None;
   __halt__ = False;
-  messages = dance;
+  messages = [CNTR];
   def __init__(self, port, baud):
     self.port = port;
     self.serial = serial.Serial(port, baud);
@@ -33,3 +36,5 @@ class MeArm:
     self.messages = self.messages[1:]
   def close(self):
     self.serial.close();
+  def setMessages(self, messages):
+    self.messages = messages;
